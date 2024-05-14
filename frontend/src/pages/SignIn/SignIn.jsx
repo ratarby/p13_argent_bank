@@ -4,6 +4,9 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom'
 
 export default function SignInForm() {
+    const login = (event) => {
+        event.preventDefault(); 
+    }
     return (
         <div className={styles['container']}>
             <div className={styles['main']}>
@@ -13,7 +16,7 @@ export default function SignInForm() {
                             <AccountCircleIcon className={styles['css-i4bv87-MuiSvgIcon-root']} />
                         </div>
                         <h1 className={styles['sign-in-text-title']}>Sign In</h1>
-                        <form>
+                        <form onSubmit={login}>
                             <div className={styles['input-wrapper']}>
                                 <label type="username">Username</label>
                                 <input type="username" id="username" />
