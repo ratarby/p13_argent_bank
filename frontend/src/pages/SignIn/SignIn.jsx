@@ -11,7 +11,7 @@ export default function SignIn() {
     const passwordRef = useRef();
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
-    
+
 
     const login = async (event) => {
         event.preventDefault();
@@ -24,15 +24,24 @@ export default function SignIn() {
         }
 
         const loginResponse = await userLogin(userName, password);
-        console.log(loginResponse, loginResponse.data.status, loginResponse.data.body.token);
+        // console.log(loginResponse, loginResponse.data.status, loginResponse.data.body.token);
 
-        if (loginResponse.data.status === 200) {
-            localStorage.setItem('token', loginResponse.data.body.token);
-            navigate('/profile');
-        } else {
+        // if (loginResponse.data.status === 200) {
+        //     localStorage.setItem('token', loginResponse.data.body.token);
+        //     navigate('/profile');
+        // } else {
+        //     setIsError(true);
+        //     return
+        // }
+
+        if (loginResponse.data.status !== 200) {
             setIsError(true);
             return
         }
+        localStorage.setItem('token', loginResponse.data.body.token);
+        navigate('/profile');
+
+        
 
     };
 

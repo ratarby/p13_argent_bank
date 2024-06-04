@@ -3,9 +3,13 @@ import axios from 'axios'
 
 
 async function userLogin(email, password ) {
-    
-        // Endpoint
+    try {
         return await axios.post(`http://localhost:3001/api/v1/user/login`, { email, password });
+    } catch (error) {
+        return error.response
+    } 
+        // Endpoint
+        
         // if (dataResponse.status === 200) {
         //     return  dataResponse.data.data; 
         // } 
@@ -16,8 +20,11 @@ async function userLogin(email, password ) {
 
     }
 async function userProfile(token) {
-
-    return await axios.get(`http://localhost:3001/api/v1/user/profile`, {}, { headers: { Authorization: `Bearer ${token}` } });
+try {
+    return await axios.get(`http://localhost:3001/api/v1/user/profile`, { headers: { Authorization: `Bearer ${token}` } });
+} catch (error) {
+    return error.response
+}
     // if (dataResponse.status === 200) {
     //     return dataResponse.data.data;
     // }
@@ -28,7 +35,11 @@ async function userProfile(token) {
 }
 
 async function updateUserProfile(user, token) {
-    return await axios.put(`http://localhost:3001/api/v1/user/profile`, user, { headers: { Authorization: `Bearer ${token}` } });
+    try {
+        return await axios.put(`http://localhost:3001/api/v1/user/profile`, user, { headers: { Authorization: `Bearer ${token}` } });
+    } catch (error) {
+        return error.response
+    }
     // if (dataResponse.status === 200) {
     //     return dataResponse.data.data;
     // }
