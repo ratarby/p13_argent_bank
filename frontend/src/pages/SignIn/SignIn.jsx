@@ -1,12 +1,10 @@
 import React, { useState, useRef } from 'react'
 import styles from './SignIn.module.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { userLogin } from '../../utils/requestApi';
+import { updateUserProfile, userLogin } from '../../utils/requestApi';
 import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
-    // const [userName, setUserName] = useState();
-    // const [password, setPassword] = useState();
     const userNameRef = useRef();
     const passwordRef = useRef();
     const [isError, setIsError] = useState(false);
@@ -15,34 +13,58 @@ export default function SignIn() {
 
     const login = async (event) => {
         event.preventDefault();
+
+        // call user login
+
         const userName = userNameRef.current.value;
         const password = passwordRef.current.value;
         const hasError = !userName || !password;
+
+        // if !userName or !password isError = hasErrror then return
         setIsError(hasError);
         if (hasError) {
             return;
         }
 
+        // login response from requestApi function userLogin 
         const loginResponse = await userLogin(userName, password);
-        // console.log(loginResponse, loginResponse.data.status, loginResponse.data.body.token);
 
-        // if (loginResponse.data.status === 200) {
-        //     localStorage.setItem('token', loginResponse.data.body.token);
-        //     navigate('/profile');
-        // } else {
-        //     setIsError(true);
-        //     return
-        // }
-
+        // if status !== 200 isError = true
         if (loginResponse.data.status !== 200) {
             setIsError(true);
             return
         }
+
+        // get token from response and store in localStorage
         localStorage.setItem('token', loginResponse.data.body.token);
+        // console.log(loginResponse, loginResponse.data.status, loginResponse.data.body.token);
+
+        // call update profile
+
+        const user = {
+            name: userName,
+            password: password
+        };
+        const token = localStorage.getItem('token');
+
+        // login update response from requestApi function updateUserProfile
+        const loginUpdateResponse = await updateUserProfile(user, token);
+
+        // if status !== 200 isError = true 
+        if (loginUpdateResponse.data.status !== 200) {
+            setIsError(true);
+            return
+        }
+        // get user and token from response and store in localStorage
+        localStorage.setItem('user', user);
+        localStorage.setItem('token', loginUpdateResponse.data.body.token);
+
+        // navigate to profile
         navigate('/profile');
 
-        
-
+        console.log(loginUpdateResponse, loginUpdateResponse.data.status, user, token);
+        console.log('user : ', user);
+        console.log('token : ', token);
     };
 
 
