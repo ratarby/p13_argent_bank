@@ -13,7 +13,6 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="signin" element={<SignIn />} />
           <Route path="balanceaccount" element={<BalanceAccount />} />
-
         </Route>
         <Route path="*" element={<Error />} />
     </Routes>
