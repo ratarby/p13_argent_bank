@@ -20,8 +20,9 @@ async function userLogin(email, password) {
 
 }
 async function userProfile(token) {
+    // console.log('token', token);
     try {
-        return await axios.get(`http://localhost:3001/api/v1/user/profile`, { headers: { Authorization: `Bearer ${token}` } });
+        return await axios.post(`http://localhost:3001/api/v1/user/profile`,{}, { headers: { Authorization: `Bearer ${token}` } });
     } catch (error) {
         return error.response
     }

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import styles from './SignIn.module.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { updateUserProfile, userLogin } from '../../utils/requestApi';
+import { userProfile, userLogin } from '../../utils/requestApi';
 import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
@@ -28,6 +28,7 @@ export default function SignIn() {
 
         // login response from requestApi function userLogin 
         const loginResponse = await userLogin(userName, password);
+        console.log('loginResponse', loginResponse.data.body);
 
         // if status !== 200 isError = true
         if (loginResponse.data.status !== 200) {
@@ -36,35 +37,30 @@ export default function SignIn() {
         }
 
         // get token from response and store in localStorage
-        localStorage.setItem('token', loginResponse.data.body.token);
+        // localStorage.setItem('token', loginResponse.data.body.token);
         // console.log(loginResponse, loginResponse.data.status, loginResponse.data.body.token);
 
         // call update profile
 
-        const user = {
-            name: userName,
-            password: password
-        };
-        const token = localStorage.getItem('token');
+        
+        // const token = localStorage.getItem('token');
 
         // login update response from requestApi function updateUserProfile
-        const loginUpdateResponse = await updateUserProfile(user, token);
+        const userResponse = await userProfile( loginResponse.data.body.token);
 
         // if status !== 200 isError = true 
-        if (loginUpdateResponse.data.status !== 200) {
+        if (userResponse.data.status !== 200) {
             setIsError(true);
             return
         }
         // get user and token from response and store in localStorage
-        localStorage.setItem('user', user);
-        localStorage.setItem('token', loginUpdateResponse.data.body.token);
+        // localStorage.setItem('token', loginUpdateResponse.data.body.token);
+        
+        console.log('userResponse', userResponse.data.body);
 
         // navigate to profile
         navigate('/profile');
 
-        console.log(loginUpdateResponse, loginUpdateResponse.data.status, user, token);
-        console.log('user : ', user);
-        console.log('token : ', token);
     };
 
 
