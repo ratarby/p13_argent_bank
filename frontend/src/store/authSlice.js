@@ -1,13 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { userLogin as login } from '../utils/requestApi';
 
-// const user = localStorage.getItem('user');
-// const token = localStorage.getItem('token');
+
+export const authLogin = createAsyncThunk('auth/login', async () => {
+    const response = await login();
+    return response.data;
+});
 
 export const authSlice = createSlice({
     name: 'auth',
     initialState: {
         user: null,
-        token : null,
+        token: null,
         isAuthenticated: false,
     },
     reducers: {
@@ -16,5 +20,13 @@ export const authSlice = createSlice({
             state.token = action.payload.token;
             state.isAuthenticated = true;
         },
+    },
+    extraReducers: (builder) => {
+        builder.addCase(authLogin.fulfilled, (state, action) => {
+            const { user, token } = action.payload;
+            state.user = user;
+            state.token = token;
+            state.isAuthenticated = true;
+        });
     },
 });

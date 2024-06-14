@@ -1,16 +1,24 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import styles from './SignIn.module.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { userProfile, userLogin } from '../../utils/requestApi';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { authLogin } from '../../store/authSlice';
 
 export default function SignIn() {
     const userNameRef = useRef();
     const passwordRef = useRef();
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
-
-
+    const dispatch = useDispatch();
+    
+    
+    useEffect(() => {
+        dispatch(authLogin());
+        // eslint-disable-next-line
+    }, []);
+    
     const login = async (event) => {
         event.preventDefault();
 
@@ -42,11 +50,11 @@ export default function SignIn() {
 
         // call update profile
 
-        
+
         // const token = localStorage.getItem('token');
 
         // login update response from requestApi function updateUserProfile
-        const userResponse = await userProfile( loginResponse.data.body.token);
+        const userResponse = await userProfile(loginResponse.data.body.token);
 
         // if status !== 200 isError = true 
         if (userResponse.data.status !== 200) {
@@ -55,7 +63,7 @@ export default function SignIn() {
         }
         // get user and token from response and store in localStorage
         // localStorage.setItem('token', loginUpdateResponse.data.body.token);
-        
+
         console.log('userResponse', userResponse.data.body);
 
         // navigate to profile
