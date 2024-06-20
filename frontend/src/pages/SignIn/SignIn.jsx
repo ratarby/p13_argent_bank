@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import styles from './SignIn.module.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { userProfile, userLogin } from '../../utils/requestApi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { authLogin } from '../../store/authSlice';
+import { authActions } from '../../store/authSlice';
 
 export default function SignIn() {
     const userNameRef = useRef();
@@ -12,12 +12,6 @@ export default function SignIn() {
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    
-    
-    useEffect(() => {
-        dispatch(authLogin());
-        // eslint-disable-next-line
-    }, []);
     
     const login = async (event) => {
         event.preventDefault();
@@ -44,16 +38,9 @@ export default function SignIn() {
             return
         }
 
-        // get token from response and store in localStorage
-        // localStorage.setItem('token', loginResponse.data.body.token);
-        // console.log(loginResponse, loginResponse.data.status, loginResponse.data.body.token);
-
         // call update profile
 
-
-        // const token = localStorage.getItem('token');
-
-        // login update response from requestApi function updateUserProfile
+        // login update response from requestApi function userProfile
         const userResponse = await userProfile(loginResponse.data.body.token);
 
         // if status !== 200 isError = true 
@@ -61,10 +48,19 @@ export default function SignIn() {
             setIsError(true);
             return
         }
-        // get user and token from response and store in localStorage
-        // localStorage.setItem('token', loginUpdateResponse.data.body.token);
 
         console.log('userResponse', userResponse.data.body);
+
+        
+        // dispatch login action to redux store
+        // this action will update the auth state with the user and token
+        // and set isAuthenticated to true
+        // this will trigger a re-render of the Header component and the App component
+        // which will then display the user's profile and the logout button
+        dispatch(authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token }));
+
+        console.log('isAuthenticated', dispatch(authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token })));
+
 
         // navigate to profile
         navigate('/profile');

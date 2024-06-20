@@ -5,6 +5,7 @@ import Home from './../src/pages/Home/Home'
 import Error from './../src/pages/Error/Error'
 import SignIn from './../src/pages/SignIn/SignIn'
 import BalanceAccount from './../src/pages/BalanceAccount/BalanceAccount'
+import Profile from './pages/Profile/Profile'
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="signin" element={<SignIn />} />
           <Route path="balanceaccount" element={<BalanceAccount />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
         <Route path="*" element={<Error />} />
     </Routes>
