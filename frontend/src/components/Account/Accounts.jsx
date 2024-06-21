@@ -11,7 +11,7 @@ export default function Accounts({ title, balance, description }) {
                 <div className={styles['account-amount']}>{balance}</div>
                 <div className={styles['account-description']}>{description}</div>
             </div>
-            <button className={styles['transaction-button']}>
+            <button className={styles['transaction-button-userEdit']}>
                 <p>View Transactions</p>
             </button>
         </div>

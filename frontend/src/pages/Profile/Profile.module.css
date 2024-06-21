@@ -1,4 +1,4 @@
-.main-balance {
+.main-balance-userEdit {
     width: 100%;
     position: relative;
     height: auto;
@@ -6,12 +6,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #12002b;
-    color: white;
+    background-color: rgba(221, 226, 234, 1);
     height: 88vh;
 }
 
-.welcome-back {
+.welcome-back-userEdit {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -19,14 +18,14 @@
     margin-bottom: 1rem;
 }
 
-.welcome-back h1 {
-    margin-bottom: .4rem;
+.welcome-back-userEdit h1 {
+    margin-bottom: .8rem;
     font-size: 2rem;
     font-weight: 900;
     text-align: center;
 }
 
-.edit-button {
+/* .edit-button {
     border-color: rgb(0, 199, 126);
     background-color:#00bc77;
     color: rgb(232, 230, 227);
@@ -38,10 +37,92 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     cursor: pointer;
+} */
+
+.inputs-container-userEdit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-firstname-userEdit {
+    margin-right: .4rem;
+}
+.firstName-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    margin-right: .4rem;
+    padding: 12px 10px;
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(179, 188, 199, 1);
+    border-radius: 3px;
 }
 
 
-.account {
+.input-lastname-userEdit {
+    margin-left: .4rem;
+}
+
+.lastName-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    margin-left: .4rem;
+    padding: 12px 10px;
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(179, 188, 199, 1);
+    border-radius: 3px;
+}
+
+input::placeholder {
+    color:rgba(191, 200, 211, 1);
+}
+
+
+.btns-container-userEdit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-btn-save-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    color: rgba(86, 89, 236, 1);
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(169, 172, 234, 1);
+    height: 41.375px;
+    width: 106.1875px;
+    border-radius: 3px;
+    /* padding: 12px 30px; */
+    margin-top: .8rem;
+    margin-bottom: .8rem;
+    margin-right: .9rem;
+    cursor: pointer;
+}
+
+.edit-btn-cancel-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    color: rgba(86, 89, 236, 1);
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(169, 172, 234, 1);
+    height: 41.375px;
+    width: 106.1875px;
+    border-radius: 3px;
+    /* padding: 12px 30px; */
+    margin-top: .8rem;
+    margin-bottom: .8rem;
+    margin-left: .7rem;
+    cursor: pointer;
+}
+
+
+
+.account-userEdit {
     width: 80%;
     min-width: 1572px;
     margin: auto;
@@ -49,7 +130,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid black;
+    border: 1px solid rgb(167, 44, 44);
     background-color: #fff;
     margin: 0 auto;
     text-align: left;
@@ -58,48 +139,368 @@
 }
 
 @media all and (max-width: 1571px)   {
-.account {
+.account-userEdit {
     width: 80%;
     min-width: 1440px;
     margin-left: auto;
     margin-right: auto;
 }
+.inputs-container-userEdit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-firstname-userEdit {
+    margin-right: .4rem;
+}
+.firstName-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    margin-right: .4rem;
+    padding: 12px 10px;
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(179, 188, 199, 1);
+    border-radius: 3px;
+}
+
+
+.input-lastname-userEdit {
+    margin-left: .4rem;
+}
+
+.lastName-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    margin-left: .4rem;
+    padding: 12px 10px;
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(179, 188, 199, 1);
+    border-radius: 3px;
+}
+
+input::placeholder {
+    color:rgba(191, 200, 211, 1);
+}
+
+
+.btns-container-userEdit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-btn-save-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    color: rgba(86, 89, 236, 1);
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(169, 172, 234, 1);
+    height: 41.375px;
+    width: 106.1875px;
+    border-radius: 3px;
+    /* padding: 12px 30px; */
+    margin-top: .8rem;
+    margin-bottom: .8rem;
+    margin-right: .9rem;
+    cursor: pointer;
+}
+
+.edit-btn-cancel-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    color: rgba(86, 89, 236, 1);
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(169, 172, 234, 1);
+    height: 41.375px;
+    width: 106.1875px;
+    border-radius: 3px;
+    /* padding: 12px 30px; */
+    margin-top: .8rem;
+    margin-bottom: .8rem;
+    margin-left: .7rem;
+    cursor: pointer;
+}
 }
 
 @media all and (max-width: 1440px)   {
-.account {
+.account-userEdit {
     width: 80%;
     min-width: 1024px;
     margin-left: auto;
     margin-right: auto;
 }
+.inputs-container-userEdit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-firstname-userEdit {
+    margin-right: .4rem;
+}
+.firstName-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    margin-right: .4rem;
+    padding: 12px 10px;
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(179, 188, 199, 1);
+    border-radius: 3px;
+}
+
+
+.input-lastname-userEdit {
+    margin-left: .4rem;
+}
+
+.lastName-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    margin-left: .4rem;
+    padding: 12px 10px;
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(179, 188, 199, 1);
+    border-radius: 3px;
+}
+
+input::placeholder {
+    color:rgba(191, 200, 211, 1);
+}
+
+
+.btns-container-userEdit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-btn-save-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    color: rgba(86, 89, 236, 1);
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(169, 172, 234, 1);
+    height: 41.375px;
+    width: 106.1875px;
+    border-radius: 3px;
+    /* padding: 12px 30px; */
+    margin-top: .8rem;
+    margin-bottom: .8rem;
+    margin-right: .9rem;
+    cursor: pointer;
+}
+
+.edit-btn-cancel-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    color: rgba(86, 89, 236, 1);
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(169, 172, 234, 1);
+    height: 41.375px;
+    width: 106.1875px;
+    border-radius: 3px;
+    /* padding: 12px 30px; */
+    margin-top: .8rem;
+    margin-bottom: .8rem;
+    margin-left: .7rem;
+    cursor: pointer;
+}
 }
 
 
 @media all and (max-width: 1200px)   {
-.account {
+.account-userEdit {
     width: 80%;
     min-width: 992px;
     margin-left: auto;
     margin-right: auto;
 }
+.inputs-container-userEdit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-firstname-userEdit {
+    margin-right: .4rem;
+}
+.firstName-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    margin-right: .4rem;
+    padding: 12px 10px;
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(179, 188, 199, 1);
+    border-radius: 3px;
+}
+
+
+.input-lastname-userEdit {
+    margin-left: .4rem;
+}
+
+.lastName-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    margin-left: .4rem;
+    padding: 12px 10px;
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(179, 188, 199, 1);
+    border-radius: 3px;
+}
+
+input::placeholder {
+    color:rgba(191, 200, 211, 1);
+}
+
+
+.btns-container-userEdit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-btn-save-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    color: rgba(86, 89, 236, 1);
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(169, 172, 234, 1);
+    height: 41.375px;
+    width: 106.1875px;
+    border-radius: 3px;
+    /* padding: 12px 30px; */
+    margin-top: .8rem;
+    margin-bottom: .8rem;
+    margin-right: .9rem;
+    cursor: pointer;
+}
+
+.edit-btn-cancel-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    color: rgba(86, 89, 236, 1);
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(169, 172, 234, 1);
+    height: 41.375px;
+    width: 106.1875px;
+    border-radius: 3px;
+    /* padding: 12px 30px; */
+    margin-top: .8rem;
+    margin-bottom: .8rem;
+    margin-left: .7rem;
+    cursor: pointer;
+}
 }
 @media all and (max-width:1000px)   {
-.account {
+.account-userEdit {
     width: 80%;
     min-width: 768px;
     margin-left: auto;
     margin-right: auto;
+}
+.inputs-container-userEdit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-firstname-userEdit {
+    margin-right: .4rem;
+}
+.firstName-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    margin-right: .4rem;
+    padding: 12px 10px;
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(179, 188, 199, 1);
+    border-radius: 3px;
+}
+
+
+.input-lastname-userEdit {
+    margin-left: .4rem;
+}
+
+.lastName-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    margin-left: .4rem;
+    padding: 12px 10px;
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(179, 188, 199, 1);
+    border-radius: 3px;
+}
+
+input::placeholder {
+    color:rgba(191, 200, 211, 1);
+}
+
+
+.btns-container-userEdit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-btn-save-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    color: rgba(86, 89, 236, 1);
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(169, 172, 234, 1);
+    height: 41.375px;
+    width: 106.1875px;
+    border-radius: 3px;
+    /* padding: 12px 30px; */
+    margin-top: .8rem;
+    margin-bottom: .8rem;
+    margin-right: .9rem;
+    cursor: pointer;
+}
+
+.edit-btn-cancel-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    color: rgba(86, 89, 236, 1);
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(169, 172, 234, 1);
+    height: 41.375px;
+    width: 106.1875px;
+    border-radius: 3px;
+    /* padding: 12px 30px; */
+    margin-top: .8rem;
+    margin-bottom: .8rem;
+    margin-left: .7rem;
+    cursor: pointer;
 }
 }
 
 
 @media all and (max-width: 800px)   {
     
-    .welcome-back {
+    .welcome-back-userEdit {
         margin-top: -5.8rem;
     }
-    .account {
+    .account-userEdit {
         width:80%;
         min-width: 420px;
         display: flex;
@@ -108,16 +509,95 @@
         margin-bottom: 2rem;
         margin-left: auto;
         margin-right: auto;
-        
+    }
+    .inputs-container-userEdit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .input-firstname-userEdit {
+        margin-right: .4rem;
+    }
+    .firstName-userEdit {
+        border-color:rgba(169, 172, 234, 1);
+        background-color:rgba(255, 255, 255, 1);
+        margin-right: .4rem;
+        padding: 12px 10px;
+        font-size: .85rem;
+        font-weight: bold;
+        border: 1px solid  rgba(179, 188, 199, 1);
+        border-radius: 3px;
+    }
+    
+    
+    .input-lastname-userEdit {
+        margin-left: .4rem;
+    }
+    
+    .lastName-userEdit {
+        border-color:rgba(169, 172, 234, 1);
+        background-color:rgba(255, 255, 255, 1);
+        margin-left: .4rem;
+        padding: 12px 10px;
+        font-size: .85rem;
+        font-weight: bold;
+        border: 1px solid  rgba(179, 188, 199, 1);
+        border-radius: 3px;
+    }
+    
+    input::placeholder {
+        color:rgba(191, 200, 211, 1);
+    }
+    
+    
+    .btns-container-userEdit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .edit-btn-save-userEdit {
+        border-color:rgba(169, 172, 234, 1);
+        background-color:rgba(255, 255, 255, 1);
+        color: rgba(86, 89, 236, 1);
+        font-size: .85rem;
+        font-weight: bold;
+        border: 1px solid  rgba(169, 172, 234, 1);
+        height: 41.375px;
+        width: 106.1875px;
+        border-radius: 3px;
+        /* padding: 12px 30px; */
+        margin-top: .8rem;
+        margin-bottom: .8rem;
+        margin-right: .9rem;
+        cursor: pointer;
+    }
+    
+    .edit-btn-cancel-userEdit {
+        border-color:rgba(169, 172, 234, 1);
+        background-color:rgba(255, 255, 255, 1);
+        color: rgba(86, 89, 236, 1);
+        font-size: .85rem;
+        font-weight: bold;
+        border: 1px solid  rgba(169, 172, 234, 1);
+        height: 41.375px;
+        width: 106.1875px;
+        border-radius: 3px;
+        /* padding: 12px 30px; */
+        margin-top: .8rem;
+        margin-bottom: .8rem;
+        margin-left: .7rem;
+        cursor: pointer;
     }
 
-    .account>div {
+    .account-userEdit>div {
         margin-top: -.7rem;
         margin-bottom: .4rem;
         padding:2rem !important;
     }
 
-    .transaction-button {
+    .transaction-button-userEdit {
         font-weight: bold;
         height: 39.375px;
         min-width: 86%;
@@ -129,31 +609,31 @@
 
 
 
-.account>div {
+.account-userEdit>div {
     padding:2rem;
 }
 
 
 
-.account-title {
+.account-title-userEdit {
     margin: 0;
     font-size: 1rem;
     font-weight: normal;
 }
 
-.account-amount {
+.account-amount-userEdit {
     margin: 0;
     font-size: 2.5rem;
     font-weight: bold;
 }
 
-.account-description {
+.account-description-userEdit {
     margin: 0;
     font-size: 1rem;
     font-weight: normal;
 }
 
-.transaction-button {
+/* .transaction-button-userEdit {
     border-color: rgb(0, 199, 126);
     background-color: rgb(0, 150, 95);
     color: rgb(232, 230, 227);
@@ -169,8 +649,9 @@
     max-width: 200px;
     margin: 2rem;
     padding: 6px;
-}
+} */
 
-.transaction-button p {
+/* .transaction-button-userEdit p {
     margin: 0;
-}
+} */
+

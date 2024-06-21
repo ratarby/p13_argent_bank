@@ -1,0 +1,170 @@
+.main-balance-userEdit {
+    width: 100%;
+    position: relative;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #12002b;
+    color: white;
+    height: 87.5vh;
+}
+
+.welcome-back-userEdit {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 2rem;
+    font-weight: 900;
+    text-align: center;
+    margin-top: -15rem;
+}
+
+.edit-button-userEdit {
+    align-items: center;
+    border-color: #00bc77;
+    background-color: #00bc77;
+    color: #fff;
+    font-weight: bold;
+    height: 39.375px;
+    width: 89.1875px;
+    border: 2px;
+    padding: 10px 10px 10px 10px;
+    margin-bottom: 2rem;
+}
+
+
+.account-userEdit {
+    width: 80%;
+    min-width: 1572px;
+    margin: auto;
+    height: 131px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid rgba(191, 200, 211, 1);
+    background-color: rgba(255, 255, 255, 1);
+    margin: 0 auto;
+    text-align: left;
+    margin-bottom: 2rem;
+    color: #12002b;
+}
+
+@media all and (max-width: 1571px)   {
+.account-userEdit {
+    width: 80%;
+    min-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+}
+}
+
+@media all and (max-width: 1440px)   {
+.account-userEdit {
+    width: 80%;
+    min-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+}
+}
+
+
+@media all and (max-width: 1200px)   {
+.account-userEdit {
+    width: 80%;
+    min-width: 992px;
+    margin-left: auto;
+    margin-right: auto;
+}
+}
+@media all and (max-width:1000px)   {
+.account-userEdit {
+    width: 80%;
+    min-width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+}
+}
+
+
+@media all and (max-width: 800px)   {
+    
+    .welcome-back-userEdit {
+        margin-top: -5.8rem;
+    }
+    .account-userEdit {
+        width:80%;
+        min-width: 420px;
+        display: flex;
+        flex-wrap: wrap;
+        height: auto;
+        margin-bottom: 2rem;
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+
+    .account-userEdit>div {
+        margin-top: -.7rem;
+        margin-bottom: .4rem;
+        padding:2rem !important;
+    }
+
+    .transaction-button-userEdit {
+        font-weight: bold;
+        height: 39.375px;
+        min-width: 86%;
+        margin:0rem 2rem!important;
+        padding: 6px;
+        transform: translateY(-1.2rem);
+    }
+}
+
+
+
+.account-userEdit>div {
+    padding:2rem;
+}
+
+
+
+.account-title-userEdit {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.account-amount-userEdit {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.account-description-userEdit {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.transaction-button-userEdit {
+    border-color: rgba(82, 86, 236, 1);
+    background-color: rgba(82, 86, 236, 1);
+    border: 1px solid rgba(82, 86, 236, 1);
+    border-radius: 3px;
+    color: rgb(232, 230, 227);
+    display: block;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    font-weight: bold;
+    height: 39.375px;
+    width: 100%;
+    max-width: 200px;
+    margin: 2rem;
+    padding: 6px;
+}
+
+.transaction-button-userEdit p {
+    margin: 0;
+}

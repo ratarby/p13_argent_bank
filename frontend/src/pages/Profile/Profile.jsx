@@ -2,27 +2,45 @@ import React from 'react'
 import styles from './Profile.module.css'
 import { accounts } from '../../data/accounts'
 import { individualAccountName } from '../../data/accounts'
-import Account from '../../components/Account/Accounts';
+import AccountUserEdit from '../../components/AccountUserEdit/AccountUserEdit';
 
 
-export default function Profile( ) {
-    
+
+export default function Profile() {
+
     const { firstName, lastName } = individualAccountName[0];
 
     return (
-        <main className={styles['main-balance']}>
-            <div className={styles['welcome-back']}>
-                <h1>Welcome back <br />{firstName} {lastName}!</h1>
-                <button className={styles['edit-button']}>Edit Name</button>
+        <main className={styles['main-balance-userEdit']}>
+            <div className={styles['welcome-back-userEdit']}>
+                <h1>Welcome back !</h1>
+                <form >
+                    <div className={styles['inputs-container-userEdit']}>
+                        <div className={styles['input-firstname-userEdit']}>
+                            <input className={styles['firstName-userEdit']} type="text"
+                                placeholder={firstName}
+                            />
+                        </div>
+                        <div className={styles['input-lastname-userEdit']}>
+                            <input className={styles['lastName-userEdit']} type="text"
+                                placeholder={lastName}
+                            />
+                        </div>
+                    </div>
+                    <div className={styles['btns-container-userEdit']}>
+                        <button type="submit" className={styles['edit-btn-save-userEdit']}>Save</button>
+                        <button type="button" className={styles['edit-btn-cancel-userEdit']}>Cancel</button>
+                    </div>
+                </form>
             </div>
             <div>
                 {accounts.map(account => (
-                    <Account 
-                        key={account.id} 
-                        title={account.title} 
+                    <AccountUserEdit
+                        key={account.id}
+                        title={account.title}
                         balance={account.balance}
                         description={account.description}
-                        />
+                    />
                 ))}
             </div>
         </main>
