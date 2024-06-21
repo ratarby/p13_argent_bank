@@ -13,17 +13,21 @@ export default function Profile() {
     return (
         <main className={styles['main-balance-userEdit']}>
             <div className={styles['welcome-back-userEdit']}>
-                <h1>Welcome back !</h1>
-                <form >
+                <h1>Welcome back</h1>
+                <form id='name' >
                     <div className={styles['inputs-container-userEdit']}>
                         <div className={styles['input-firstname-userEdit']}>
                             <input className={styles['firstName-userEdit']} type="text"
-                                placeholder={firstName}
+                            name='name'
+                            placeholder={firstName}
+                            autoComplete='off'
                             />
                         </div>
                         <div className={styles['input-lastname-userEdit']}>
                             <input className={styles['lastName-userEdit']} type="text"
-                                placeholder={lastName}
+                            name='name'
+                            placeholder={lastName}
+                            autoComplete='off'
                             />
                         </div>
                     </div>

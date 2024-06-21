@@ -4,7 +4,6 @@ import styles from './AccountUserEdit.module.css'
 export default function AccountUserEdit({ title, balance, description }) {
 
     return (
-
         <div className={styles['account-userEdit']}>
             <div>
                 <div className={styles['accountt-title-userEdit']}>{title}</div>
@@ -15,8 +14,6 @@ export default function AccountUserEdit({ title, balance, description }) {
                 <p>View Transactions</p>
             </button>
         </div>
-
-
     );
 }
 
