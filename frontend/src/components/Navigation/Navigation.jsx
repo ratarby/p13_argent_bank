@@ -34,7 +34,7 @@ export default function Navigation() {
             </div>
             <div className={styles['nav-right']}>
                 {isAuthenticated  && (
-                    <NavLink to="/" className={styles['main-nav-item']}>
+                    <NavLink to="profile" className={styles['main-nav-item']}>
                         <AccountCircleIcon className={styles['css-i4bv87-MuiSvgIcon-root']} /> 
                         <span className={styles['user-name']}>{user.firstName}</span>
                     </NavLink>
