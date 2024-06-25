@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import styles from './Navigation.module.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -11,13 +11,15 @@ import { useSelector } from 'react-redux';
 
 
 export default function Navigation() {
-    const firstName = useSelector((state) => state.auth.user?.firstName);
-    console.log('firstName', firstName);
+    const user = useSelector((state) => state.auth.user);
+    console.log('user (firstName)', user)
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     console.log('isAuthenticated', isAuthenticated);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const handleLogout = () => {
         dispatch(authActions.logout());
+        navigate('/');
     }
 
     return (
@@ -25,25 +27,25 @@ export default function Navigation() {
             {/* Nav Right */}
             <div className={styles['nav-right']}>
                 {!isAuthenticated  && (
-                    <Link to="signin" className={styles['main-nav-item']}>
+                    <NavLink to="signin" className={styles['main-nav-item']}>
                         <AccountCircleIcon className={styles['css-i4bv87-MuiSvgIcon-root']} /> Sign In
-                    </Link>
+                    </NavLink>
                 )}
             </div>
             <div className={styles['nav-right']}>
                 {isAuthenticated  && (
-                    <Link to="/" className={styles['main-nav-item']}>
+                    <NavLink to="/" className={styles['main-nav-item']}>
                         <AccountCircleIcon className={styles['css-i4bv87-MuiSvgIcon-root']} /> 
-                        <span className={styles['user-name']}>{firstName}</span>
-                    </Link>
+                        <span className={styles['user-name']}>{user.firstName}</span>
+                    </NavLink>
                 )}
             </div>
             <div className={styles['nav-right']}>
                 {isAuthenticated  && (
-                    <Link to="/" className={styles['main-nav-item']} >
+                    <NavLink to="/" className={styles['main-nav-item']} >
                         <LogoutIcon className={styles['css-i4bv87-MuiSvgIcon-root']} onClick={handleLogout} />
                         Sign Out
-                    </Link>
+                    </NavLink>
                 )}
             </div>
 
