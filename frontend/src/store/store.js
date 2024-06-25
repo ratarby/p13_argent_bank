@@ -16,7 +16,6 @@ const store = configureStore({
         auth: authReducer,
     },
     preloadedState: initializeState,
-
 });
 
 export default store 

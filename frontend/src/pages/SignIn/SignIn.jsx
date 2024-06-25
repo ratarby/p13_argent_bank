@@ -13,9 +13,8 @@ export default function SignIn() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     
-    const login = async (event) => {
+    const handleLogin = async (event) => {
         event.preventDefault();
-
         // call user login
 
         const userName = userNameRef.current.value;
@@ -77,7 +76,7 @@ export default function SignIn() {
                             <AccountCircleIcon className={styles['css-i4bv87-MuiSvgIcon-root']} />
                         </div>
                         <h1 className={styles['sign-in-text-title']}>Sign In</h1>
-                        <form onSubmit={login}>
+                        <form onSubmit={handleLogin}>
                             <div className={styles['input-wrapper']}>
                                 <label htmlFor="username" type="username" >Username</label>
                                 <input name="username" type="username" id="username" autoComplete="on" ref={userNameRef} />
