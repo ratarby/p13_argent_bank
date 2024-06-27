@@ -10,14 +10,14 @@ import Profile from './pages/Profile/Profile'
 export default function App() {
   return (
     <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="signin" element={<SignIn />} />
-          <Route path="balanceaccount" element={<BalanceAccount />} />
-          <Route path="profile" element={<Profile />} />
-        </Route>
+      < Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="signin" element={<SignIn />} />
+        <Route path="balanceaccount" element={<BalanceAccount />} />
+        <Route path="profile" element={<Profile />} />
+      </Route>
         <Route path="*" element={<Error />} />
     </Routes>
   )
 }
-
+    

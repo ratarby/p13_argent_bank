@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import styles from './SignIn.module.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { userProfile, userLogin } from '../../utils/requestApi';
+import { userLogin, userProfile, updateUserProfile  } from '../../utils/requestApi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/authSlice';
@@ -48,6 +48,16 @@ export default function SignIn() {
             return
         }
 
+
+        // call update profile
+
+        // if status !== 200 isError = true 
+        if (userResponse.data.status !== 200) {
+            setIsError(true);
+            return
+        }
+        const userUpdateResponse = await updateUserProfile(userResponse.data.body, loginResponse.data.body.token);
+
         console.log('userResponse', userResponse.data.body);
 
         
@@ -56,7 +66,10 @@ export default function SignIn() {
         // and set isAuthenticated to true
         // this will trigger a re-render of the Header component and the App component
         // which will then display the user's profile and the logout button
-        dispatch(authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token }));
+        dispatch(
+            authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token }),
+            authActions.updateProfile({ user: userUpdateResponse.data.body, token: loginResponse.data.body.token })
+        );
 
         console.log('isAuthenticated', dispatch(authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token })));
 

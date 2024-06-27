@@ -25,19 +25,22 @@
     text-align: center;
 }
 
-/* .edit-button {
+.edit-button-userEdit {
+    display: flex;
     border-color: rgb(0, 199, 126);
     background-color:#00bc77;
     color: rgb(232, 230, 227);
-    color: #fff;
     font-size: .85rem;
     font-weight: bold;
-    border: 2px;
+    border: 1px ;
+    border-radius: 1px;
     padding: 12px 10px;
     margin-top: 1rem;
+    margin-right: auto;
+    margin-left: auto;
     margin-bottom: 1rem;
     cursor: pointer;
-} */
+}
 
 .inputs-container-userEdit {
     display: flex;

@@ -19,6 +19,12 @@ export const authSlice = createSlice({
             state.user = null;
             state.token = null;
         },
+        updateProfile: (state, action) => {
+            const { user, token } = action.payload;
+            state.user = user;
+            state.isAuthenticated = true;
+            state.token = token;
+        }
     },
 });
 

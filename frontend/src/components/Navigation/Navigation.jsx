@@ -11,13 +11,16 @@ import { authActions } from '../../store/authSlice';
 
 export default function Navigation() {
     const user = useSelector((state) => state.auth.user);
-    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    const isAuthenticated = useSelector(
+        (state) => state.auth.isAuthenticated);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleLogout = () => {
         if (isAuthenticated) {
-            dispatch(authActions.logout());
+            dispatch(
+                authActions.logout()
+            );
             navigate('/');
         }
     }
