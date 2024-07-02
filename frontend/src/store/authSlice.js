@@ -21,8 +21,8 @@ export const authSlice = createSlice({
         },
         updateProfile: (state, action) => {
             const { user, token } = action.payload;
-            state.user = user;
             state.isAuthenticated = true;
+            state.user = user;
             state.token = token;
         }
     },

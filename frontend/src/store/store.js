@@ -18,4 +18,4 @@ const store = configureStore({
     preloadedState: initializeState,
 });
 
-export default store 
+export default store;

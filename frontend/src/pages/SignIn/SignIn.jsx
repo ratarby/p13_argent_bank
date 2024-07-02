@@ -67,11 +67,11 @@ export default function SignIn() {
         // this will trigger a re-render of the Header component and the App component
         // which will then display the user's profile and the logout button
         dispatch(
-            authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token }),
-            authActions.updateProfile({ user: userUpdateResponse.data.body, token: loginResponse.data.body.token })
+            authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token })
         );
 
         console.log('isAuthenticated', dispatch(authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token })));
+        console.log('userUpdateResponse', userUpdateResponse.data.body, 'token', loginResponse.data.body.token);
 
 
         // navigate to profile
