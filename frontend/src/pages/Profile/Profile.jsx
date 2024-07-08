@@ -22,9 +22,6 @@ export default function Profile() {
     const [firstName, setFirstName] = useState('firstName');
     const [lastName, setLastName] = useState('lastName');
     const [toggle, setToggle] = useState(false);
-
-    
-
     const navigate = useNavigate();
 
     // const dispatch = useDispatch();
@@ -62,8 +59,7 @@ export default function Profile() {
         setLastName(event.target.value);
         setLastName(value);
     }
-
-
+    
     const handleSave = async (event) => {
         event.preventDefault();
         const validateFirstName = (firstName) => {
@@ -80,6 +76,7 @@ export default function Profile() {
         }
 
         if (!validateFirstName(firstName) || !validateLastName(lastName)) {
+            navigate('/')
             return;
         }
         const user = {
@@ -89,6 +86,11 @@ export default function Profile() {
         // call user update profile endoint
         const userUpdateResponse = await updateUserProfile(user, token);
         console.log('userUpdateResponse', userUpdateResponse);
+
+        if (userUpdateResponse.status !== 200) {
+            navigate('/')
+            return
+        }
     }
 
 
