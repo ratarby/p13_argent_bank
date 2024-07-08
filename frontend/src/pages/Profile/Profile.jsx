@@ -4,15 +4,16 @@ import { accounts } from '../../data/accounts'
 // import { individualAccountName } from '../../data/accounts'
 import AccountUserEdit from '../../components/AccountUserEdit/AccountUserEdit';
 import { useSelector } from 'react-redux';
-// import { authActions } from '../../store/authSlice';
-import { } from 'react-redux';
-// import {   userLogin, userProfile, updateUserProfile } from '../../utils/requestApi';
+import { useNavigate } from 'react-router-dom';
+import { updateUserProfile } from '../../utils/requestApi';
+
 
 
 
 export default function Profile() {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const user = useSelector((state) => state.auth.user);
+    const token = useSelector((state) => state.auth.token);
     console.log('user', user);
     const [errors, setErrors] = useState({
         firstName: '',
@@ -22,10 +23,18 @@ export default function Profile() {
     const [lastName, setLastName] = useState('lastName');
     const [toggle, setToggle] = useState(false);
 
+    
+
+    const navigate = useNavigate();
+
     // const dispatch = useDispatch();
 
 
     const handleToggle = () => {
+        if (!isAuthenticated) {
+            navigate('/');
+            return
+        }
         setToggle(!toggle);
     }
 
@@ -35,15 +44,9 @@ export default function Profile() {
         const validateFirstName = (firstName) => {
             return firstName.trim().length > 0;
         }
-        // if (validateFirstName(value)) {
-        //     setErrors({ ...errors, firstName: '' });
-        //     setFirstName(value);
-        // } else {
-        //     setErrors({ ...errors, firstName: 'Please enter a valid first name' });
-        // }
-        if(!validateFirstName(value)){
+        if (!validateFirstName(value)) {
             setErrors({ ...errors, firstName: 'Please enter a valid firstname' });
-        } 
+        }
         setFirstName(event.target.value);
         setFirstName(value);
     }
@@ -53,16 +56,39 @@ export default function Profile() {
             return lastName.trim().length > 0;
         }
         const value = event.target.value;
-        // if (validateLastName(value)) {
-        //     setErrors({ ...errors, lastName: '' });
-        //     setLastName(value);
-        // }
-        // setLastName(event.target.value);
-        if(!validateLastName(value)){
+        if (!validateLastName(value)) {
             setErrors({ ...errors, lastName: 'Please enter a valid lastname' });
-        } 
+        }
         setLastName(event.target.value);
         setLastName(value);
+    }
+
+
+    const handleSave = async (event) => {
+        event.preventDefault();
+        const validateFirstName = (firstName) => {
+            return firstName.trim().length > 0;
+        }
+        const validateLastName = (lastName) => {
+            return lastName.trim().length > 0;
+        }
+        if (!validateFirstName(firstName)) {
+            setErrors({ ...errors, firstName: 'Please enter a valid firstname' });
+        }
+        if (!validateLastName(lastName)) {
+            setErrors({ ...errors, lastName: 'Please enter a valid lastname' });
+        }
+
+        if (!validateFirstName(firstName) || !validateLastName(lastName)) {
+            return;
+        }
+        const user = {
+            firstName: firstName,
+            lastName: lastName
+        }
+        // call user update profile endoint
+        const userUpdateResponse = await updateUserProfile(user, token);
+        console.log('userUpdateResponse', userUpdateResponse);
     }
 
 
@@ -87,7 +113,7 @@ export default function Profile() {
             {isAuthenticated && toggle && (<div>
                 <div className={styles['welcome-back-userEdit']}>
                     <h1>Welcome back</h1>
-                    <form id='name' >
+                    <form id='name' onSubmit={handleSave}>
                         <div className={styles['inputs-container-userEdit']}>
                             <div className={styles['input-firstname-userEdit']}>
                                 <input className={styles['firstName-userEdit']} type="text"
@@ -96,7 +122,8 @@ export default function Profile() {
                                     autoComplete='off'
                                     onChange={handleFirstNameChange}
                                     value={firstName}
-                                />
+                                    /> <br />
+                                    {errors && <p className={styles['error-message-userEdit-firstName']}>{errors.firstName}</p>}
                             </div>
                             <div className={styles['input-lastname-userEdit']}>
                                 <input className={styles['lastName-userEdit']} type="text"
@@ -105,7 +132,8 @@ export default function Profile() {
                                     autoComplete='off'
                                     onChange={handleLastNameChange}
                                     value={lastName}
-                                />
+                                /> <br />
+                                {errors && <p className={styles['error-message-userEdit-lastName']}>{errors.lastName}</p>}
                             </div>
                         </div>
                         <div className={styles['btns-container-userEdit']}>

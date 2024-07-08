@@ -12,6 +12,7 @@ export default function SignIn() {
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -32,7 +33,9 @@ export default function SignIn() {
         console.log('loginResponse', loginResponse.data.body);
 
         // if status !== 200 isError = true
+        
         if (loginResponse.data.status !== 200) {
+            navigate('/');
             setIsError(true);
             return
         }
@@ -76,6 +79,7 @@ export default function SignIn() {
 
         // navigate to profile
         navigate('/profile');
+        
 
     };
 

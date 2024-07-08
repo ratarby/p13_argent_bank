@@ -14,12 +14,12 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: -25.5rem;
+    margin-top: -22rem;
     /* margin-bottom: 1rem; */
 }
 
 .welcome-back-userEdit h1 {
-    margin-bottom: .8rem;
+    margin-bottom: 2rem;
     font-size: 2rem;
     font-weight: 900;
     text-align: center;
@@ -87,6 +87,7 @@ input::placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: .1rem;
 }
 
 .edit-btn-save-userEdit {
@@ -100,7 +101,7 @@ input::placeholder {
     width: 106.1875px;
     border-radius: 3px;
     /* padding: 12px 30px; */
-    margin-top: .8rem;
+    margin-top: 1rem;
     margin-bottom: .8rem;
     margin-right: .9rem;
     cursor: pointer;
@@ -117,7 +118,7 @@ input::placeholder {
     width: 106.1875px;
     border-radius: 3px;
     /* padding: 12px 30px; */
-    margin-top: .8rem;
+    margin-top: 1rem;
     margin-bottom: .8rem;
     margin-left: .7rem;
     cursor: pointer;
@@ -634,6 +635,20 @@ input::placeholder {
     margin: 0;
     font-size: 1rem;
     font-weight: normal;
+}
+
+.error-message-userEdit-firstName {
+    color: red;
+    font-weight: 500;
+    font-size: .94rem;
+    line-height: 2;
+}
+.error-message-userEdit-lastName {
+    color: red;
+    font-weight: 500;
+    font-size: .94rem;
+    line-height: 2;
+    transform: translateX(6px);
 }
 
 /* .transaction-button-userEdit {

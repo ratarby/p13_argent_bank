@@ -17,12 +17,14 @@ export default function Navigation() {
     const dispatch = useDispatch();
 
     const handleLogout = () => {
-        if (isAuthenticated) {
-            dispatch(
-                authActions.logout()
-            );
+        // if !isAuthenticated navigate to homepage
+        if (!isAuthenticated) {
             navigate('/');
         }
+        // call logout
+        dispatch(
+            authActions.logout()
+        );
     }
 
     return (
