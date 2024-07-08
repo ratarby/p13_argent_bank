@@ -3,9 +3,10 @@ import styles from './Profile.module.css'
 import { accounts } from '../../data/accounts'
 // import { individualAccountName } from '../../data/accounts'
 import AccountUserEdit from '../../components/AccountUserEdit/AccountUserEdit';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { updateUserProfile } from '../../utils/requestApi';
+import { authActions } from '../../store/authSlice';
 
 
 
@@ -19,12 +20,12 @@ export default function Profile() {
         firstName: '',
         lastName: '',
     });
-    const [firstName, setFirstName] = useState('firstName');
-    const [lastName, setLastName] = useState('lastName');
+    const [firstName, setFirstName] = useState('firstname');
+    const [lastName, setLastName] = useState('lastname');
     const [toggle, setToggle] = useState(false);
     const navigate = useNavigate();
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
 
     const handleToggle = () => {
@@ -37,6 +38,10 @@ export default function Profile() {
 
 
     const handleFirstNameChange = (event) => {
+        if (!isAuthenticated) {
+            navigate('/');
+            return
+        }
         const value = event.target.value;
         const validateFirstName = (firstName) => {
             return firstName.trim().length > 0;
@@ -79,6 +84,7 @@ export default function Profile() {
             navigate('/')
             return;
         }
+
         const user = {
             firstName: firstName,
             lastName: lastName
@@ -91,6 +97,13 @@ export default function Profile() {
             navigate('/')
             return
         }
+
+        dispatch(
+            authActions.updateProfile({
+                user, 
+                token
+            }));
+            console.log('update profile success:', user, 'token:', token);
     }
 
 

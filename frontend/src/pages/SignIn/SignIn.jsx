@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import styles from './SignIn.module.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { userLogin, userProfile, updateUserProfile  } from '../../utils/requestApi';
+import { userLogin, userProfile } from '../../utils/requestApi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/authSlice';
@@ -13,7 +13,7 @@ export default function SignIn() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    
+
     const handleLogin = async (event) => {
         event.preventDefault();
         // call user login
@@ -22,25 +22,30 @@ export default function SignIn() {
         const password = passwordRef.current.value;
         const hasError = !userName || !password;
 
+
+
+
         // if !userName or !password isError = hasErrror then return
         setIsError(hasError);
         if (hasError) {
             return;
         }
 
+
         // login response from requestApi function userLogin 
         const loginResponse = await userLogin(userName, password);
-        console.log('loginResponse', loginResponse.data.body);
+        console.log('loginResponse', loginResponse.data.body || null);
+
 
         // if status !== 200 isError = true
-        
         if (loginResponse.data.status !== 200) {
             navigate('/');
             setIsError(true);
+            console.log('login failed');
             return
         }
 
-        // call update profile
+        // call user profile
 
         // login update response from requestApi function userProfile
         const userResponse = await userProfile(loginResponse.data.body.token);
@@ -59,27 +64,33 @@ export default function SignIn() {
             setIsError(true);
             return
         }
-        const userUpdateResponse = await updateUserProfile(userResponse.data.body, loginResponse.data.body.token);
+        // const userUpdateResponse = await updateUserProfile(userResponse.data.body, loginResponse.data.body.token);
+        // console.log('userResponse', userResponse.data.body);
 
-        console.log('userResponse', userResponse.data.body);
 
-        
+        // if (userUpdateResponse.data.status !== 200) {
+        //     setIsError(true);
+        //     return
+        // }
+
+
         // dispatch login action to redux store
         // this action will update the auth state with the user and token
         // and set isAuthenticated to true
         // this will trigger a re-render of the Header component and the App component
         // which will then display the user's profile and the logout button
         dispatch(
-            authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token })
+            authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token }),
         );
 
-        console.log('isAuthenticated', dispatch(authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token })));
-        console.log('userUpdateResponse', userUpdateResponse.data.body, 'token', loginResponse.data.body.token);
+        console.log('isAuthenticated', dispatch(
+            authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token })))
+        // console.log('userUpdateResponse', userUpdateResponse.data.body, 'token', loginResponse.data.body.token);
 
 
         // navigate to profile
         navigate('/profile');
-        
+
 
     };
 
