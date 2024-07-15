@@ -20,8 +20,8 @@ export default function Profile() {
         firstName: '',
         lastName: '',
     });
-    const [firstName, setFirstName] = useState('firstname');
-    const [lastName, setLastName] = useState('lastname');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [toggle, setToggle] = useState(false);
     const navigate = useNavigate();
 
@@ -34,25 +34,32 @@ export default function Profile() {
             return
         }
         setToggle(!toggle);
+        setFirstName(user.firstName);
+        setLastName(user.lastName);
     }
 
-
+    // handleFirstNameChange
     const handleFirstNameChange = (event) => {
+        const value = event.target.value;
+
         if (!isAuthenticated) {
             navigate('/');
             return
         }
-        const value = event.target.value;
         const validateFirstName = (firstName) => {
             return firstName.trim().length > 0;
         }
+
         if (!validateFirstName(value)) {
             setErrors({ ...errors, firstName: 'Please enter a valid firstname' });
         }
-        setFirstName(event.target.value);
-        setFirstName(value);
+        setFirstName(event.target.value)
+        setFirstName(value)
+            ;
+
     }
 
+    // handleLastNameChange
     const handleLastNameChange = (event) => {
         const validateLastName = (lastName) => {
             return lastName.trim().length > 0;
@@ -64,15 +71,21 @@ export default function Profile() {
         setLastName(event.target.value);
         setLastName(value);
     }
-    
+
+
     const handleSave = async (event) => {
         event.preventDefault();
+
+        //firstName, lastName, password validation
         const validateFirstName = (firstName) => {
             return firstName.trim().length > 0;
         }
+        // lastName validation
         const validateLastName = (lastName) => {
             return lastName.trim().length > 0;
         }
+
+        // password validation from local storage (hide)
         if (!validateFirstName(firstName)) {
             setErrors({ ...errors, firstName: 'Please enter a valid firstname' });
         }
@@ -80,15 +93,21 @@ export default function Profile() {
             setErrors({ ...errors, lastName: 'Please enter a valid lastname' });
         }
 
+
         if (!validateFirstName(firstName) || !validateLastName(lastName)) {
             navigate('/')
             return;
         }
 
+        const storedUser = JSON.parse(localStorage.getItem('user')).password || {};
+
         const user = {
-            firstName: firstName,
-            lastName: lastName
+            firstName,
+            lastName,
+            password: storedUser.password || ''
         }
+
+
         // call user update profile endoint
         const userUpdateResponse = await updateUserProfile(user, token);
         console.log('userUpdateResponse', userUpdateResponse);
@@ -99,11 +118,10 @@ export default function Profile() {
         }
 
         dispatch(
-            authActions.updateProfile({
-                user, 
-                token
-            }));
-            console.log('update profile success:', user, 'token:', token);
+            authActions.updateProfile({ 
+                user: userUpdateResponse.data.body, password: userUpdateResponse.data.body?.password, token:  token }),            
+        )
+        console.log('update profile success:', user, 'token:', token);
     }
 
 
@@ -137,8 +155,8 @@ export default function Profile() {
                                     autoComplete='off'
                                     onChange={handleFirstNameChange}
                                     value={firstName}
-                                    /> <br />
-                                    {errors && <p className={styles['error-message-userEdit-firstName']}>{errors.firstName}</p>}
+                                /> <br />
+                                {errors && <p className={styles['error-message-userEdit-firstName']}>{errors.firstName}</p>}
                             </div>
                             <div className={styles['input-lastname-userEdit']}>
                                 <input className={styles['lastName-userEdit']} type="text"
@@ -150,6 +168,7 @@ export default function Profile() {
                                 /> <br />
                                 {errors && <p className={styles['error-message-userEdit-lastName']}>{errors.lastName}</p>}
                             </div>
+
                         </div>
                         <div className={styles['btns-container-userEdit']}>
                             <button type="submit" className={styles['edit-btn-save-userEdit']}>Save</button>

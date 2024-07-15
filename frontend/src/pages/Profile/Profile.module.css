@@ -184,6 +184,20 @@ input::placeholder {
     border: 1px solid  rgba(179, 188, 199, 1);
     border-radius: 3px;
 }
+.input-password-userEdit {
+    margin-left: .4rem;
+}
+
+.password-userEdit {
+    border-color:rgba(169, 172, 234, 1);
+    background-color:rgba(255, 255, 255, 1);
+    margin-left: .4rem;
+    padding: 12px 10px;
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px solid  rgba(179, 188, 199, 1);
+    border-radius: 3px;
+}
 
 input::placeholder {
     color:rgba(191, 200, 211, 1);
