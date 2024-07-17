@@ -65,7 +65,7 @@ export default function SignIn() {
             authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token }),
         );
 
-        console.log('isAuthenticated', dispatch(
+        console.log('isAuthenticated : login success', dispatch(
             authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token })))
 
         navigate('/profile');

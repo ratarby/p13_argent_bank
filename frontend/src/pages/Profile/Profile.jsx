@@ -67,7 +67,7 @@ export default function Profile() {
 
     // handleLastNameChange
     const handleLastNameChange = (event) => {
-        
+
         const value = event.target.value;
         const validateLastName = (lastName) => {
             return lastName.trim().length > 0 && regexExp.test(lastName);
@@ -141,7 +141,7 @@ export default function Profile() {
                 user: userUpdateResponse.data.body, token: token
             }),
         )
-        console.log('update profile success:', user, 'token:', token);
+        console.log('update profile : success & saved:', user, 'token:', token);
 
         // close profile edit name form
         setToggle(!toggle);
@@ -169,7 +169,7 @@ export default function Profile() {
             user:  user,
             token: tokenFromLocalStorage
         }))
-
+        console.log('cancel success:', user, 'token:', tokenFromLocalStorage);
 
     }
 
