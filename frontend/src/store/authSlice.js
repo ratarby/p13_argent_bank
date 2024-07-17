@@ -32,6 +32,12 @@ export const authSlice = createSlice({
             state.token = token;
             localStorage.setItem('user', JSON.stringify(user));
         },
+        cancelUpdateProfile: (state, action) => {
+            const{ user, token } = action.payload;
+            state.isAuthenticated = true;
+            state.user = user;
+            state.token = token;
+        }
     },
 });
 

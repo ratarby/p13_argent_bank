@@ -8,15 +8,6 @@ async function userLogin(email, password) {
     } catch (error) {
         return error.response
     }
-    // Endpoint
-
-    // if (dataResponse.status === 200) {
-    //     return  dataResponse.data.data; 
-    // } 
-    // if (dataResponse.status === 401) {
-    //     return -1;
-    // }
-    // return null;
 
 }
 async function userProfile(token) {
@@ -26,13 +17,6 @@ async function userProfile(token) {
     } catch (error) {
         return error.response
     }
-    // if (dataResponse.status === 200) {
-    //     return dataResponse.data.data;
-    // }
-    // if (dataResponse.status === 403) {
-    //     return -1;
-    // }
-    // return null;
 }
 
 async function updateUserProfile(user, token) {
@@ -41,10 +25,6 @@ async function updateUserProfile(user, token) {
     } catch (error) {
         return error.response
     }
-    // if (dataResponse.status === 200) {
-    //     return dataResponse.data.data;
-    // }
-    // return null;
 }
 export { userLogin, userProfile, updateUserProfile }
 

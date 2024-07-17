@@ -5,6 +5,7 @@ import authReducer from './authSlice';
 const localStorageToken = localStorage.getItem('token');
 const localStorageUserData = JSON.parse(localStorage.getItem('user'));
 
+
 const initializeState = {
     auth: {
         token: localStorageToken || null,
