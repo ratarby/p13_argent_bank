@@ -1,27 +1,21 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import styles from './SignIn.module.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { userLogin, userProfile, updateUserProfile } from '../../utils/requestApi';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/authSlice';
 
 
+
 export default function SignIn() {
-    const user = useSelector((state) => state.auth.user);
     const userNameRef = useRef();
     const passwordRef = useRef();
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        setIsError(false);
-        setUsername(JSON.parse(localStorage.getItem('user')).email);
-        setPassword((localStorage.getItem('user')).password);
-    }, [user, password]);
+
 
 
     const handleLogin = async (event) => {
@@ -89,15 +83,13 @@ export default function SignIn() {
                         <h1 className={styles['sign-in-text-title']}>Sign In</h1>
                         <form onSubmit={handleLogin}>
                             <div className={styles['input-wrapper']}>
-                                <label htmlFor="username" type="username" >Username</label>
+                                <label htmlFor="username" type="username">Username</label>
                                 <input
                                     name="username"
                                     type="username"
                                     id="username"
                                     autoComplete="off"
                                     ref={userNameRef}
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
                                 />
                             </div>
                             <div className={styles['input-wrapper']}>
@@ -108,8 +100,6 @@ export default function SignIn() {
                                     id="password"
                                     autoComplete="off"
                                     ref={passwordRef}
-                                    defaultValue={password}
-                                    onChange={(e) => setPassword(e.target.value)}
                                 />
                             </div>
                             <div className={styles['input-remember']}>
