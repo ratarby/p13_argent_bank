@@ -51,10 +51,8 @@ export default function SignIn() {
             return
         }
 
-        console.log('userResponse', userResponse.data.body);
-
         const userUpdateResponse = await updateUserProfile(userResponse.data.body, loginResponse.data.body.token);
-        console.log('userResponse', userResponse.data.body);
+        console.log('userUpdateResponse', userResponse.data.body);
 
 
         if (userUpdateResponse.data.status !== 200) {
@@ -62,6 +60,7 @@ export default function SignIn() {
             return
         }
 
+        // login successful, store user and token in redux 
         dispatch(
             authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token }),
         );
