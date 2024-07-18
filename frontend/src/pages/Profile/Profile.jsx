@@ -96,14 +96,17 @@ export default function Profile() {
 
         if (!validateFirstName(firstName)) {
             setErrors(hasError, { ...errors, firstName: 'Please enter a valid firstname' });
+            setToggle(!toggle);
         }
         if (!validateLastName(lastName)) {
             setErrors(hasError, { ...errors, lastName: 'Please enter a valid lastname' });
+            setToggle(!toggle);
+
         }
 
 
         if (!validateFirstName(firstName) || !validateLastName(lastName)) {
-            navigate('/')
+            setToggle(!toggle);
             return;
         }
 
@@ -161,6 +164,7 @@ export default function Profile() {
         const tokenFromLocalStorage = localStorage.getItem('token');
         console.log('userFromLocalStorage',  userFromLocalStorage);
         setErrors(false)
+        setToggle(!toggle);
         setFirstName(userFromLocalStorage.firstName);
         setLastName(userFromLocalStorage.lastName);
 
