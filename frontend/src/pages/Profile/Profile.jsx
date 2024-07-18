@@ -160,7 +160,7 @@ export default function Profile() {
         const userFromLocalStorage = JSON.parse(localStorage.getItem('user'));
         const tokenFromLocalStorage = localStorage.getItem('token');
         console.log('userFromLocalStorage',  userFromLocalStorage);
-        setToggle(!toggle);
+        setErrors(false)
         setFirstName(userFromLocalStorage.firstName);
         setLastName(userFromLocalStorage.lastName);
 
