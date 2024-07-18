@@ -67,7 +67,6 @@ export default function Profile() {
 
     // handleLastNameChange
     const handleLastNameChange = (event) => {
-
         const value = event.target.value;
         const validateLastName = (lastName) => {
             return lastName.trim().length > 0 && regexExp.test(lastName);
