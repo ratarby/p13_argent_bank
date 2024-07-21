@@ -31,32 +31,6 @@ paths:
             $ref: '#/definitions/LoginResponse'
         '400':
           description: Invalid Fields
-        '401':
-          description: Token expired
-        '500':
-          description: Internal Server Error
-  /user/signup:
-    post:
-      tags:
-        - User Module
-      summary: Signup
-      description: API for Signup
-      parameters:
-        - in: body
-          name: body
-          description: Signup Payload
-          required: true
-          schema:
-            $ref: '#/definitions/User'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: Signup Successfully
-          schema:
-            $ref: '#/definitions/ApiResponse'
-        '400':
-          description: Invalid Fields
         '500':
           description: Internal Server Error
   /user/profile:
@@ -80,8 +54,8 @@ paths:
           description: User profile retrieved successfully
           schema:
             $ref: '#/definitions/ApiResponse'
-        '401':
-          description: Token expired
+        '400':
+          description: Invalid Fields
         '500':
           description: Internal Server Error
     put:
@@ -110,8 +84,8 @@ paths:
           description: User profile updated successfully
           schema:
             $ref: '#/definitions/ApiResponse'
-        '401':
-          description: Token expired
+        '400':
+          description: Invalid Fields
         '500':
           description: Internal Server Error
   /transactions:
@@ -137,11 +111,9 @@ paths:
             $ref: '#/definitions/TransactionsApiResponse'
         '400':
           description: Invalid Fields
-        '401':
-          description: Token expired
         '500':
           description: Internal Server Error
-  /transactions/:transactionId:
+  /transactions/{transactionId}:
     get:
       security:
         - Bearer: []
@@ -155,6 +127,10 @@ paths:
           description: Attach Bearer JWT token
           required: true
           type: string
+        - in: path
+          name: transactionId
+          required: true
+          type: string
       produces:
         - application/json
       responses:
@@ -164,8 +140,6 @@ paths:
             $ref: '#/definitions/TransactionsApiResponse'
         '400':
           description: Invalid Fields
-        '401':
-          description: Token expired
         '500':
           description: Internal Server Error
     put:
@@ -179,6 +153,10 @@ paths:
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
+          required: true
+          type: string
+        - in: path
+          name: transactionId
           required: true
           type: string
         - in: body
@@ -196,8 +174,6 @@ paths:
             $ref: '#/definitions/TransactionsApiResponse'
         '400':
           description: Invalid Fields
-        '401':
-          description: Token expired
         '500':
           description: Internal Server Error
 securityDefinitions:

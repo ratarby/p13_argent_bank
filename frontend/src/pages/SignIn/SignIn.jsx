@@ -36,7 +36,6 @@ export default function SignIn() {
 
 
         if (loginResponse.data.status !== 200) {
-            navigate('/');
             setIsError(true);
             console.log('login failed');
             return
