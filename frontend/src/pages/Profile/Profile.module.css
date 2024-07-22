@@ -19,7 +19,7 @@
 }
 
 .welcome-back-userEdit h1 {
-    margin-bottom: 1rem;
+    margin-bottom: .8rem;
     font-size: 2rem;
     font-weight: 900;
     text-align: center;
@@ -38,7 +38,8 @@
     margin-top: 1rem;
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 1rem;
+    margin-bottom: 1.18rem;
+    transform: translateY(-.6rem);
     cursor: pointer;
 }
 
@@ -88,6 +89,7 @@ input::placeholder {
     align-items: center;
     justify-content: center;
     margin-top: .1rem;
+    margin-bottom: -.14rem;
 }
 
 .edit-btn-save-userEdit {
@@ -142,7 +144,7 @@ input::placeholder {
     color: #12002b;
 }
 
-@media all and (max-width: 1571px)   {
+@media all and (min-width:1575px) and( max-width: 3500px)   {
 .account-userEdit {
     width: 80%;
     min-width: 1440px;
@@ -202,14 +204,13 @@ input::placeholder {
 input::placeholder {
     color:rgba(191, 200, 211, 1);
 }
-
-
 .btns-container-userEdit {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: .1rem;
+    margin-bottom: -.14rem;
 }
-
 .edit-btn-save-userEdit {
     border-color:rgba(169, 172, 234, 1);
     background-color:rgba(255, 255, 255, 1);
@@ -291,14 +292,30 @@ input::placeholder {
 input::placeholder {
     color:rgba(191, 200, 211, 1);
 }
-
-
+.edit-button-userEdit {
+    display: flex;
+    border-color: rgb(0, 199, 126);
+    background-color:#00bc77;
+    color: rgb(232, 230, 227);
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px ;
+    border-radius: 1px;
+    padding: 12px 10px;
+    margin-top: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: .9rem;
+    transform: translateY(-.6rem);
+    cursor: pointer;
+}
 .btns-container-userEdit {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: .1rem;
+    margin-bottom: -.14rem;
 }
-
 .edit-btn-save-userEdit {
     border-color:rgba(169, 172, 234, 1);
     background-color:rgba(255, 255, 255, 1);
@@ -382,11 +399,30 @@ input::placeholder {
     color:rgba(191, 200, 211, 1);
 }
 
+.edit-button-userEdit {
+    display: flex;
+    border-color: rgb(0, 199, 126);
+    background-color:#00bc77;
+    color: rgb(232, 230, 227);
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px ;
+    border-radius: 1px;
+    padding: 12px 10px;
+    margin-top: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: .9rem;
+    transform: translateY(-.6rem);
+    cursor: pointer;
+}
 
 .btns-container-userEdit {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: .1.12rem;
+    margin-bottom: -.14rem;
 }
 
 .edit-btn-save-userEdit {
@@ -469,12 +505,29 @@ input::placeholder {
 input::placeholder {
     color:rgba(191, 200, 211, 1);
 }
-
-
+.edit-button-userEdit {
+    display: flex;
+    border-color: rgb(0, 199, 126);
+    background-color:#00bc77;
+    color: rgb(232, 230, 227);
+    font-size: .85rem;
+    font-weight: bold;
+    border: 1px ;
+    border-radius: 1px;
+    padding: 12px 10px;
+    margin-top: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 1rem;
+    transform: translateY(-.6rem);
+    cursor: pointer;
+}
 .btns-container-userEdit {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: .1.1rem;
+    margin-bottom: -.1rem;
 }
 
 .edit-btn-save-userEdit {
@@ -511,7 +564,6 @@ input::placeholder {
     cursor: pointer;
 }
 }
-
 
 @media all and (max-width: 800px)   {
     
@@ -568,11 +620,30 @@ input::placeholder {
         color:rgba(191, 200, 211, 1);
     }
     
+    .edit-button-userEdit {
+        display: flex;
+        border-color: rgb(0, 199, 126);
+        background-color:#00bc77;
+        color: rgb(232, 230, 227);
+        font-size: .85rem;
+        font-weight: bold;
+        border: 1px ;
+        border-radius: 1px;
+        padding: 12px 10px;
+        margin-top: 1rem;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 1rem;
+        transform: translateY(-.6rem);
+        cursor: pointer;
+    }
     
     .btns-container-userEdit {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: .1rem;
+        margin-bottom: -.12rem;
     }
     
     .edit-btn-save-userEdit {
