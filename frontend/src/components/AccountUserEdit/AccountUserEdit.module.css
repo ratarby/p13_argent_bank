@@ -51,12 +51,15 @@
     color: #12002b;
 }
 
-@media all and (max-width: 1571px)   {
+@media all and (min-width:1571px) and ( max-width: 1568px)   {
 .account-userEdit {
     width: 80%;
     min-width: 1440px;
     margin-left: auto;
     margin-right: auto;
+}
+.transaction-button-userEdit p{
+    padding: 5px;
 }
 }
 
@@ -66,6 +69,14 @@
     min-width: 1024px;
     margin-left: auto;
     margin-right: auto;
+}
+.account-userEdit>div {
+    margin-top: -.7rem;
+    margin-bottom: .2rem;
+    padding:2rem !important;
+}
+.transaction-button-userEdit p{
+    padding: 5px;
 }
 }
 
@@ -77,6 +88,11 @@
     margin-left: auto;
     margin-right: auto;
 }
+.account-userEdit>div {
+    margin-top: -.7rem;
+    margin-bottom: .2rem;
+    padding:2rem !important;
+}
 }
 @media all and (max-width:1000px)   {
 .account-userEdit {
@@ -84,6 +100,11 @@
     min-width: 768px;
     margin-left: auto;
     margin-right: auto;
+}
+.account-userEdit>div {
+    margin-top: -.6.8rem;
+    margin-bottom: .2rem;
+    padding:2rem !important;
 }
 }
 
@@ -106,8 +127,8 @@
     }
 
     .account-userEdit>div {
-        margin-top: -.7rem;
-        margin-bottom: .4rem;
+        margin-top: -.6.8rem;
+        margin-bottom: .2rem;
         padding:2rem !important;
     }
 

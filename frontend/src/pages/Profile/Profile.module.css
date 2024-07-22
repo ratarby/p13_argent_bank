@@ -144,7 +144,7 @@ input::placeholder {
     color: #12002b;
 }
 
-@media all and (min-width:1575px) and( max-width: 3500px)   {
+@media all and (min-width:1575px) and ( max-width: 3500px)   {
 .account-userEdit {
     width: 80%;
     min-width: 1440px;
@@ -209,7 +209,7 @@ input::placeholder {
     align-items: center;
     justify-content: center;
     margin-top: .1rem;
-    margin-bottom: -.14rem;
+    margin-bottom: .14rem;
 }
 .edit-btn-save-userEdit {
     border-color:rgba(169, 172, 234, 1);
