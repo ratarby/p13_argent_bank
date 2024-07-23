@@ -58,7 +58,7 @@ export default function Profile() {
         }
 
         if (!validateFirstName(value)) {
-            setErrors({ ...errors, firstName: 'Please enter a valid firstname' });
+            setErrors({ ...errors, firstName: 'First name cannot be empty '});
         }
         setFirstName(event.target.value && value);
 
@@ -75,7 +75,7 @@ export default function Profile() {
             setErrors(hasError && regexExp.test(!value));
         }
         if (!validateLastName(value)) {
-            setErrors({ ...errors, lastName: 'Please enter a valid lastname' });
+            setErrors({ ...errors, lastName: 'Last name cannot be empty ' });
         }
         setLastName(event.target.value && value);
     }
