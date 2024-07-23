@@ -38,8 +38,8 @@ export default function Profile() {
             return
         }
         setToggle(!toggle);
-        setFirstName(firstName);
-        setLastName(lastName);
+        setFirstName(user.firstName);
+        setLastName(user.lastName);
     }
 
     // handleFirstNameChange
@@ -50,32 +50,27 @@ export default function Profile() {
             navigate('/');
             return
         }
-        const validateFirstName = (firstName) => {
-            return firstName.trim().length > 0 && regexExp.test(firstName);
-        }
         if (!firstName) {
             setErrors(hasError && regexExp.test(!value));
         }
-
-        if (!validateFirstName(value)) {
+        if (value.trim().length === 0) {
             setErrors({ ...errors, firstName: 'First name cannot be empty '});
+        } 
+        if (!regexExp.test(value)) {
+            setErrors({ ...errors, firstName: 'Please enter a valid first name' });
         }
         setFirstName(event.target.value && value);
-
-
     }
 
     // handleLastNameChange
     const handleLastNameChange = (event) => {
         const value = event.target.value;
-        const validateLastName = (lastName) => {
-            return lastName.trim().length > 0 && regexExp.test(lastName);
-        }
-        if (!lastName) {
-            setErrors(hasError && regexExp.test(!value));
-        }
-        if (!validateLastName(value)) {
-            setErrors({ ...errors, lastName: 'Last name cannot be empty ' });
+
+        if (value.trim().length === 0) {
+            setErrors({ ...errors, lastName: 'Last name cannot be empty '});
+        } 
+        if (!regexExp.test(value)) {
+            setErrors({ ...errors, lastName: 'Please enter a valid last name' });
         }
         setLastName(event.target.value && value);
     }
@@ -83,71 +78,54 @@ export default function Profile() {
 
     const handleSave = async (event) => {
         event.preventDefault();
-
-        //firstName, lastName, password validation
-        const validateFirstName = (firstName) => {
-            return firstName.trim().length > 0 && regexExp.test(firstName);
-
+    
+        let hasErrors = false;
+    
+        if (firstName.trim().length === 0) {
+            setErrors(prev => ({ ...prev, firstName: 'First name cannot be empty' }));
+            hasErrors = true;
         }
-        // lastName validation
-        const validateLastName = (lastName) => {
-            return lastName.trim().length > 0 && regexExp.test(lastName);
+        if (!regexExp.test(firstName)) {
+            setErrors(prev => ({ ...prev, firstName: 'Please enter a valid first name' }));
+            hasErrors = true;
+        }
+    
+        if (lastName.trim().length === 0) {
+            setErrors(prev => ({ ...prev, lastName: 'Last name cannot be empty' }));
+            hasErrors = true;
+        }
+        if (!regexExp.test(lastName)) {
+            setErrors(prev => ({ ...prev, lastName: 'Please enter a valid last name' }));
+            hasErrors = true;
         }
 
-        if (!validateFirstName(firstName)) {
-            setErrors(hasError, { ...errors, firstName: 'Please enter a valid firstname' });
-            setToggle(!toggle);
-        }
-        if (!validateLastName(lastName)) {
-            setErrors(hasError, { ...errors, lastName: 'Please enter a valid lastname' });
-            setToggle(!toggle);
-
-        }
-
-
-        if (!validateFirstName(firstName) || !validateLastName(lastName)) {
-            setToggle(!toggle);
+        if (hasErrors) {
+            // Keep form open if there are errors
             return;
         }
-
-        // update user profile
-
-        /**
-         * Prepare user data for profile update
-         * 
-         * This code retrieves the stored user password from localStorage,
-         * and combines it with the updated firstName and lastName.
-         * It ensures that the password is preserved when updating the profile,
-         * even if it's not being changed in this operation.
-         */
-        const storedUser = JSON.parse(localStorage.getItem('user')).password || {};
-
-        const user = {
-            firstName,
-            lastName,
-            password: storedUser.password || ''
+    
+        if (!hasErrors) {
+            const user = {
+                firstName,
+                lastName,
+            };
+    
+            const userUpdateResponse = await updateUserProfile(user, token);
+    
+            if (userUpdateResponse.data.status !== 200) {
+                navigate('/');
+                return;
+            }
+            dispatch(
+                authActions.updateProfile({
+                    user: userUpdateResponse.data.body,
+                    token: token
+                })
+            );
         }
-
-        // call user update profile endoint
-        const userUpdateResponse = await updateUserProfile(user, token);
-        console.log('userUpdateResponse', userUpdateResponse);
-
-        if (userUpdateResponse.status !== 200) {
-            navigate('/')
-            return
-        }
-
-        // update user profile for redux 
-        dispatch(
-            authActions.updateProfile({
-                user: userUpdateResponse.data.body, token: token
-            }),
-        )
-        console.log('update profile : success & saved:', user, 'token:', token);
-
-        // close profile edit name form
-        setToggle(!toggle);
-    }
+        setToggle(toggle);
+    };
+    
 
     /**
      * Handles the cancel action for the profile.
@@ -179,6 +157,7 @@ export default function Profile() {
 
 
 
+
     // const { firstName, lastName } = individualAccountName[0];
 
     return (
@@ -203,7 +182,6 @@ export default function Profile() {
                             <div className={styles['input-firstname-userEdit']}>
                                 <input className={styles['firstName-userEdit']} type="text"
                                     name='name'
-                                    placeholder={user.firstName}
                                     autoComplete='off'
                                     onChange={handleFirstNameChange}
                                     value={firstName}
@@ -213,7 +191,6 @@ export default function Profile() {
                             <div className={styles['input-lastname-userEdit']}>
                                 <input className={styles['lastName-userEdit']} type="text"
                                     name='name'
-                                    placeholder={user.lastName}
                                     autoComplete='off'
                                     onChange={handleLastNameChange}
                                     value={lastName}
