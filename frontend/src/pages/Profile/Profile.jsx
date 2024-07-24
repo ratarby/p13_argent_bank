@@ -10,6 +10,7 @@ import { authActions } from '../../store/authSlice';
 
 
 
+// Profile component: displays and edits user info, manages form interactions and updates
 
 export default function Profile() {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -23,8 +24,8 @@ export default function Profile() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [toggle, setToggle] = useState(false);
-    const regexExp = /^[a-zA-Z][a-zA-ZàèçÀÈÇ'-]*$/;
-
+    // const regexExp = /^[a-zA-Z][a-zA-ZàèçÀÈÇ'-]*$/;
+    const regexExp = /^[a-zA-Z][a-zA-ZàèçÀÈÇ'-]* ?([a-zA-ZàèçÀÈÇ'-]+ ?){0,2}$/;
 
     const hasError = firstName === '' || lastName === '';
     const navigate = useNavigate();
@@ -66,6 +67,13 @@ export default function Profile() {
     const handleLastNameChange = (event) => {
         const value = event.target.value;
 
+        if (!isAuthenticated) {
+            navigate('/');
+            return
+        }
+        if (!lastName) {
+            setErrors(hasError && regexExp.test(!value));
+        }
         if (value.trim().length === 0) {
             setErrors({ ...errors, lastName: 'Last name cannot be empty '});
         } 
@@ -75,7 +83,7 @@ export default function Profile() {
         setLastName(event.target.value && value);
     }
 
-
+    // Handle profile form submission: validate inputs, update profile if valid, and store in Redux
     const handleSave = async (event) => {
         event.preventDefault();
     
@@ -116,27 +124,23 @@ export default function Profile() {
                 navigate('/');
                 return;
             }
+    
+            // Update user in Redux store
             dispatch(
                 authActions.updateProfile({
                     user: userUpdateResponse.data.body,
                     token: token
                 })
             );
+            setToggle(toggle);
         }
-        setToggle(toggle);
+        setToggle(!toggle);
     };
     
 
-    /**
-     * Handles the cancel action for the profile.
-     *
-     * Retrieves the user from local storage and the token from local storage.
-     * Toggles the toggle state.
-     * Sets the first name and last name from the user retrieved from local storage.
-     * Dispatches the cancelUpdateProfile action with the user and token.
-     *
-     * @return {void}
-     */
+    // Handles profile cancel action: retrieves user and token from local storage,
+    // toggles state, resets name fields, and dispatches cancelUpdateProfile to Redux store
+
     const handleCancel = () => {
         const userFromLocalStorage = JSON.parse(localStorage.getItem('user'));
         const tokenFromLocalStorage = localStorage.getItem('token');
@@ -146,12 +150,13 @@ export default function Profile() {
         setFirstName(userFromLocalStorage.firstName);
         setLastName(userFromLocalStorage.lastName);
 
+        // Dispatch action to cancel profile update, resetting user state with current user data and token
+
         dispatch(authActions.cancelUpdateProfile({
             user:  user,
             token: tokenFromLocalStorage
         }))
         console.log('cancel success:', user, 'token:', tokenFromLocalStorage);
-
     }
 
 

@@ -8,6 +8,11 @@ import { authActions } from '../../store/authSlice';
 
 
 
+/**
+ * Renders a Sign In form and handles the login process.
+ *
+ * @return {JSX.Element} The Sign In form component.
+ */
 export default function SignIn() {
     const userNameRef = useRef();
     const passwordRef = useRef();
@@ -17,7 +22,7 @@ export default function SignIn() {
 
 
 
-
+    // Handle the login form submission
     const handleLogin = async (event) => {
         event.preventDefault();
 
@@ -59,7 +64,7 @@ export default function SignIn() {
             return
         }
 
-        // login successful, store user and token in redux 
+        // login successful, store user and token in Redux store
         dispatch(
             authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token }),
         );

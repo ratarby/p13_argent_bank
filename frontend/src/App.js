@@ -4,7 +4,6 @@ import Layout from '../src/components/Layout/Layout'
 import Home from './../src/pages/Home/Home'
 import Error from './../src/pages/Error/Error'
 import SignIn from './../src/pages/SignIn/SignIn'
-import BalanceAccount from './../src/pages/BalanceAccount/BalanceAccount'
 import Profile from './pages/Profile/Profile'
 import { useSelector } from 'react-redux'
 
@@ -19,7 +18,6 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="signin" element={!isAuthenticated ?  <SignIn /> :   <Navigate to="/profile" /> }
         />
-        <Route path="balanceaccount" element={<BalanceAccount />} />
         <Route path="profile"element={isAuthenticated ? <Profile /> : <Navigate to="/signin" />}
         />
       </Route>
