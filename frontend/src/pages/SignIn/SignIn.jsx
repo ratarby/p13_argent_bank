@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import styles from './SignIn.module.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { userLogin, userProfile, updateUserProfile } from '../../utils/requestApi';
+import { userLogin, userProfile } from '../../utils/requestApi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/authSlice';
@@ -37,42 +37,45 @@ export default function SignIn() {
         }
 
         const loginResponse = await userLogin(userName, password);
-        console.log('loginResponse', loginResponse.data.body, loginResponse.data.status);
+        try {
+            if (loginResponse.data.status !== 200) {
+                setIsError(hasError);
+                return;
+            }
+            console.log('loginResponse : login successful => get user token', loginResponse.data.body, loginResponse.data.status);
+
+            const userResponse = await userProfile(loginResponse.data.body.token);
+            if (userResponse.data.status !== 200) {
+                setIsError(true);
+                return;
+            }
+            console.log('userResponse : retreived user data', userResponse.data.body, userResponse.data.status);
+
+            // const userUpdateResponse = await updateUserProfile(userResponse.data.body, loginResponse.data.body.token);
+            // try {
+            //     if (userUpdateResponse.data.status !== 200) {
+            //     setIsError(true);
+            //     return
+            // }
+            // console.log('userUpdateResponse', userResponse.data.body);
+            // } catch (error) {
+            //     console.log('userUpdateResponse : login failed');
+            // }
 
 
-        if (loginResponse.data.status !== 200) {
-            setIsError(true);
+
+            // login successful, store user and token in Redux store
+            dispatch(
+                authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token }),
+            );
+
+            console.log('isAuthenticated : login success', dispatch(
+                authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token })))
+
+            navigate('/profile');
+        } catch (error) {
             console.log('login failed');
-            return
         }
-
-        const userResponse = await userProfile(loginResponse.data.body.token);
-
-        console.log('userResponse', userResponse.data.body);
-
-        if (userResponse.data.status !== 200) {
-            setIsError(true);
-            return
-        }
-
-        const userUpdateResponse = await updateUserProfile(userResponse.data.body, loginResponse.data.body.token);
-        console.log('userUpdateResponse', userResponse.data.body);
-
-
-        if (userUpdateResponse.data.status !== 200) {
-            setIsError(true);
-            return
-        }
-
-        // login successful, store user and token in Redux store
-        dispatch(
-            authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token }),
-        );
-
-        console.log('isAuthenticated : login success', dispatch(
-            authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token })))
-
-        navigate('/profile');
     };
 
     return (

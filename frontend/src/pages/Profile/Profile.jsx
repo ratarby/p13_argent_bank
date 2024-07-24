@@ -55,8 +55,8 @@ export default function Profile() {
             setErrors(hasError && regexExp.test(!value));
         }
         if (value.trim().length === 0) {
-            setErrors({ ...errors, firstName: 'First name cannot be empty '});
-        } 
+            setErrors({ ...errors, firstName: 'First name cannot be empty ' });
+        }
         if (!regexExp.test(value)) {
             setErrors({ ...errors, firstName: 'Please enter a valid first name' });
         }
@@ -75,8 +75,8 @@ export default function Profile() {
             setErrors(hasError && regexExp.test(!value));
         }
         if (value.trim().length === 0) {
-            setErrors({ ...errors, lastName: 'Last name cannot be empty '});
-        } 
+            setErrors({ ...errors, lastName: 'Last name cannot be empty ' });
+        }
         if (!regexExp.test(value)) {
             setErrors({ ...errors, lastName: 'Please enter a valid last name' });
         }
@@ -86,9 +86,9 @@ export default function Profile() {
     // Handle profile form submission: validate inputs, update profile if valid, and store in Redux
     const handleSave = async (event) => {
         event.preventDefault();
-    
+
         let hasErrors = false;
-    
+
         if (firstName.trim().length === 0) {
             setErrors(prev => ({ ...prev, firstName: 'First name cannot be empty' }));
             hasErrors = true;
@@ -97,7 +97,7 @@ export default function Profile() {
             setErrors(prev => ({ ...prev, firstName: 'Please enter a valid first name' }));
             hasErrors = true;
         }
-    
+
         if (lastName.trim().length === 0) {
             setErrors(prev => ({ ...prev, lastName: 'Last name cannot be empty' }));
             hasErrors = true;
@@ -111,20 +111,24 @@ export default function Profile() {
             // Keep form open if there are errors
             return;
         }
-    
+
         if (!hasErrors) {
             const user = {
                 firstName,
                 lastName,
             };
-    
+
             const userUpdateResponse = await updateUserProfile(user, token);
-    
-            if (userUpdateResponse.data.status !== 200) {
-                navigate('/');
-                return;
+            try {
+                if (userUpdateResponse.data.status !== 200) {
+                    navigate('/');
+                    return;
+                }
+                console.log('userUpdateResponse', userUpdateResponse.data.body);
+            } catch (error) {
+                console.log('userUpdateResponse : update failed');
             }
-    
+
             // Update user in Redux store
             dispatch(
                 authActions.updateProfile({
@@ -136,7 +140,7 @@ export default function Profile() {
         }
         setToggle(!toggle);
     };
-    
+
 
     // Handles profile cancel action: retrieves user and token from local storage,
     // toggles state, resets name fields, and dispatches cancelUpdateProfile to Redux store
@@ -144,7 +148,7 @@ export default function Profile() {
     const handleCancel = () => {
         const userFromLocalStorage = JSON.parse(localStorage.getItem('user'));
         const tokenFromLocalStorage = localStorage.getItem('token');
-        console.log('userFromLocalStorage',  userFromLocalStorage);
+        console.log('userFromLocalStorage', userFromLocalStorage);
         setErrors(false)
         setToggle(!toggle);
         setFirstName(userFromLocalStorage.firstName);
@@ -153,10 +157,10 @@ export default function Profile() {
         // Dispatch action to cancel profile update, resetting user state with current user data and token
 
         dispatch(authActions.cancelUpdateProfile({
-            user:  user,
+            user: user,
             token: tokenFromLocalStorage
         }))
-        console.log('cancel success:', user, 'token:', tokenFromLocalStorage);
+        console.log('canceled:', user, 'token:', tokenFromLocalStorage);
     }
 
 

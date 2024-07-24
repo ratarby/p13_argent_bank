@@ -5,11 +5,16 @@ import axios from 'axios'
 // log in with email & password
 async function userLogin(email, password) {
     try {
-        return await axios.post(`http://localhost:3001/api/v1/user/login`, { email, password });
+        const response = await axios.post(`http://localhost:3001/api/v1/user/login`, { email, password }, { headers: { 'Content-Type': 'application/json' } });
+        console.log(response);
+        return response;
     } catch (error) {
-        return error.response
+        if (error.response && error.response.status === 400) {
+            console.log('Bad Request:', error.response);
+        } else {
+            console.log('Error:', error.message);
+        }
     }
-
 }
 
 // get user profile with token
