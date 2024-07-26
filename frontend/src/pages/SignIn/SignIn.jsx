@@ -74,7 +74,8 @@ export default function SignIn() {
 
             navigate('/profile');
         } catch (error) {
-            console.log('login failed');
+            console.log('Error: User not found');
+            setIsError(true);
         }
     };
 
