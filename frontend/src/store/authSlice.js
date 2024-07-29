@@ -16,7 +16,7 @@ export const authSlice = createSlice({
             state.token = token;
             state.isAuthenticated = true;
             localStorage.setItem('token', token);
-            localStorage.setItem('user', JSON.stringify( state.user));
+            localStorage.setItem('user', JSON.stringify(state.user));
         },
         logout: (state) => {
             state.isAuthenticated = false;
@@ -30,7 +30,7 @@ export const authSlice = createSlice({
             state.isAuthenticated = true;
             state.user = user;
             state.token = token;
-            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('user', JSON.stringify(state.user));
         },
         cancelUpdateProfile: (state, action) => {
             const{ user, token } = action.payload;

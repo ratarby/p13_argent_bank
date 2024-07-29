@@ -6,7 +6,7 @@ import axios from 'axios'
 async function userLogin(email, password) {
     try {
         const response = await axios.post(`http://localhost:3001/api/v1/user/login`, { email, password }, { headers: { 'Content-Type': 'application/json' } });
-        console.log(response);
+        console.log(response.data);
         return response;
     } catch (error) {
         if (error.response && error.response.status === 400) {
