@@ -27,7 +27,6 @@ export default function Profile() {
     // const regexExp = /^[a-zA-Z][a-zA-ZàèçÀÈÇ'-]*$/;
     const regexExp = /^[a-zA-Z][a-zA-ZàèçÀÈÇ'-]* ?([a-zA-ZàèçÀÈÇ'-]+ ?){0,2}$/;
 
-    const hasError = firstName === '' || lastName === '';
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
@@ -51,9 +50,10 @@ export default function Profile() {
             navigate('/');
             return
         }
-        if (!firstName) {
-            setErrors(hasError && regexExp.test(!value));
-        }
+        setErrors((prevErrors)=>({
+            ...prevErrors,
+            firstName: '',
+        }))
         if (value.trim().length === 0) {
             setErrors({ ...errors, firstName: 'First name cannot be empty ' });
         }
@@ -71,9 +71,10 @@ export default function Profile() {
             navigate('/');
             return
         }
-        if (!lastName) {
-            setErrors(hasError && regexExp.test(!value));
-        }
+        setErrors((prevErrors)=>({
+            ...prevErrors,
+            lastName: '',
+        }))
         if (value.trim().length === 0) {
             setErrors({ ...errors, lastName: 'Last name cannot be empty ' });
         }
