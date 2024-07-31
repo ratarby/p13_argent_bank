@@ -5,4 +5,6 @@
 . `npm run dev:server`
 . `npm run populate-db`
 
-## frontend : `npm start`
+## frontend
+
+. `npm start`
