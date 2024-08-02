@@ -7,7 +7,7 @@ export default function ErrorPage() {
       <h1 className={styles.errorTitle}>404</h1>
       <p className={styles.errorText}>Ooops!  La page que vous recherchez n'existe pas !</p>
       <Link to="/" className={styles.returnHomeText}>
-        Retournez a la page d'accueil
+        <p>Retournez a la page d'accueil</p>
       </Link>
     </main>
   );

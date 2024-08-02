@@ -27,3 +27,161 @@
 .returnHomeText:hover {
   color: #4c6d8d;
 }
+
+@media screen and (max-width: 1440px) {
+  .error {
+    margin-top: -5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    padding: 0 5rem;
+  }
+  
+  .errorTitle {
+    font-size: 16rem;
+    color: #ff0000;
+    margin-bottom: 10rem;
+  }
+  
+  .errorText {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 14rem;
+  
+  }
+  
+  .returnHomeText {
+    font-size: 1.250rem;
+  }
+  .returnHomeText:hover {
+    color: #4c6d8d;
+  }
+}
+@media screen and (max-width: 1201px) {
+  .error {
+    margin-top: -5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    padding: 0 5rem;
+  }
+  
+  .errorTitle {
+    font-size: 14rem;
+    color: #ff0000;
+    margin-bottom: 10rem;
+  }
+  
+  .errorText {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 14rem;
+  
+  }
+  
+  .returnHomeText {
+    font-size: 1.250rem;
+  }
+  .returnHomeText:hover {
+    color: #4c6d8d;
+  }
+}
+@media screen and (max-width: 999px) {
+  .error {
+    margin-top: -5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    padding: 0 5rem;
+  }
+  
+  .errorTitle {
+    font-size: 12rem;
+    color: #ff0000;
+    margin-bottom: 10rem;
+  }
+  
+  .errorText {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 14rem;
+  
+  }
+  
+  .returnHomeText {
+    font-size: 1.250rem;
+  }
+  .returnHomeText:hover {
+    color: #4c6d8d;
+  }
+}
+@media screen and (max-width: 783px) {
+  .error {
+    margin-top: -5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    padding: 0 5rem;
+  }
+  
+  .errorTitle {
+    font-size: 12rem;
+    color: #ff0000;
+    margin-bottom: 10rem;
+  }
+  
+  .errorText {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 14rem;
+  
+  }
+  
+  .returnHomeText {
+    font-size: 1.250rem;
+  }
+  .returnHomeText:hover {
+    color: #4c6d8d;
+  }
+}
+@media screen and (max-width: 500px) {
+  .error {
+    margin-top: -4rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    padding: 0 5rem;
+  }
+  
+  .errorTitle {
+    font-size: 12rem;
+    color: #ff0000;
+    margin-bottom: 10rem;
+  }
+  
+  .errorText {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 14rem;
+  
+  }
+  
+  .returnHomeText {
+    font-size: 1.250rem;
+  }
+  .returnHomeText:hover {
+    color: #4c6d8d;
+  }
+}

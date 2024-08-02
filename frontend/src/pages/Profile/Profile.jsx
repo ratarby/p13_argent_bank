@@ -50,16 +50,14 @@ export default function Profile() {
             navigate('/');
             return
         }
-        setErrors((prevErrors)=>({
+        setErrors((prevErrors) => ({
             ...prevErrors,
-            firstName: '',
-        }))
-        if (value.trim().length === 0) {
-            setErrors({ ...errors, firstName: 'First name cannot be empty ' });
-        }
-        if (!regexExp.test(value)) {
-            setErrors({ ...errors, firstName: 'Please enter a valid first name' });
-        }
+            firstName: value.trim().length === 0
+                ? 'First name cannot be empty'
+                : !regexExp.test(value)
+                    ? 'Please enter a valid first name'
+                    : '',
+        }));
         setFirstName(event.target.value && value);
     }
 
@@ -71,17 +69,17 @@ export default function Profile() {
             navigate('/');
             return
         }
-        setErrors((prevErrors)=>({
+
+        setErrors((prevErrors) => ({
             ...prevErrors,
-            lastName: '',
-        }))
-        if (value.trim().length === 0) {
-            setErrors({ ...errors, lastName: 'Last name cannot be empty ' });
-        }
-        if (!regexExp.test(value)) {
-            setErrors({ ...errors, lastName: 'Please enter a valid last name' });
-        }
+            lastName: value.trim().length === 0
+                ? 'Last name cannot be empty'
+                : !regexExp.test(value)
+                    ? 'Please enter a valid last name'
+                    : '',
+        }));
         setLastName(event.target.value && value);
+
     }
 
     // Handle profile form submission: validate inputs, update profile if valid, and store in Redux
@@ -89,24 +87,35 @@ export default function Profile() {
         event.preventDefault();
 
         let hasErrors = false;
+        
+        // const firstname = () => {
+        //     if (firstName.trim().length === 0) {
+        //         setErrors(prev => ({ ...prev, firstName: 'First name cannot be empty' }));
+        //         hasErrors = true;
+        //     }
+        //     if (!regexExp.test(firstName)) {
+        //         setErrors(prev => ({ ...prev, firstName: 'Please enter a valid first name' }));
+        //         hasErrors = true;
+        //     }
+        // };
+        // firstname();
+        const firstname = () => {
+            hasErrors = firstName.trim().length === 0
+                ? (setErrors(prev => ({ ...prev, firstName: 'First name cannot be empty' })), true)
+                : !regexExp.test(firstName)
+                    ? (setErrors(prev => ({ ...prev, firstName: 'Please enter a valid first name' })), true)
+                    : false;
+        };
+        firstname();
 
-        if (firstName.trim().length === 0) {
-            setErrors(prev => ({ ...prev, firstName: 'First name cannot be empty' }));
-            hasErrors = true;
-        }
-        if (!regexExp.test(firstName)) {
-            setErrors(prev => ({ ...prev, firstName: 'Please enter a valid first name' }));
-            hasErrors = true;
-        }
-
-        if (lastName.trim().length === 0) {
-            setErrors(prev => ({ ...prev, lastName: 'Last name cannot be empty' }));
-            hasErrors = true;
-        }
-        if (!regexExp.test(lastName)) {
-            setErrors(prev => ({ ...prev, lastName: 'Please enter a valid last name' }));
-            hasErrors = true;
-        }
+        const lastname = () => {
+            hasErrors = lastName.trim().length === 0
+                ? (setErrors(prev => ({ ...prev, lastName: 'Last name cannot be empty' })), true)
+                : !regexExp.test(lastName)
+                    ? (setErrors(prev => ({ ...prev, lastName: 'Please enter a valid last name' })), true)
+                    : false;
+        };
+        lastname();
 
         if (hasErrors) {
             // Keep form open if there are errors
