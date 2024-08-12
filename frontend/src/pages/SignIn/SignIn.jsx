@@ -51,19 +51,6 @@ export default function SignIn() {
             }
             console.log('userResponse : retreived user data', userResponse.data.body, userResponse.data.status);
 
-            // const userUpdateResponse = await updateUserProfile(userResponse.data.body, loginResponse.data.body.token);
-            // try {
-            //     if (userUpdateResponse.data.status !== 200) {
-            //     setIsError(true);
-            //     return
-            // }
-            // console.log('userUpdateResponse', userResponse.data.body);
-            // } catch (error) {
-            //     console.log('userUpdateResponse : login failed');
-            // }
-
-
-
             // login successful, store user and token in Redux store
             dispatch(
                 authActions.login({ user: userResponse.data.body, token: loginResponse.data.body.token }),
